@@ -11,8 +11,8 @@
     <!--输出到文件-->
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/mdr-history.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>30</maxHistory>
+            <fileNamePattern>${LOG_PATH}/web.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>180</maxHistory>
             <!--<totalSizeCap>1GB</totalSizeCap>-->
         </rollingPolicy>
         <encoder>
@@ -27,10 +27,10 @@
         <File>${LOG_PATH}/error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <FileNamePattern>${LOG_PATH}/mdr-error.%d{yyyy-MM-dd}.log
+            <FileNamePattern>${LOG_PATH}/web-error.log.%d{yyyy-MM-dd}
             </FileNamePattern>
             <!-- keep 30 days' worth of history -->
-            <maxHistory>30</maxHistory>
+            <maxHistory>180</maxHistory>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>%d %p [%thread] [%c:%L] - %msg%n</Pattern>

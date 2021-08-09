@@ -7,7 +7,6 @@ import ${rootPackage}tool.message.ResponseMsg;
 import ${svcPackageOutPath}.I${entityName}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import cn.hutool.json.JSONUtil;
 
 /**
  * ${classComment} Controller
@@ -34,13 +33,13 @@ public class ${entityName}Controller extends BaseController {
 	@GetMapping("/queryPage")
 	public ResponseMsg queryPage(${entityName} model,Integer pageNum,Integer pageSize) {
 		RequestMsg requestMsg = new RequestMsg(model,pageNum,pageSize);
-		logger.info("params:{}", JSONUtil.toJsonStr(requestMsg));
+		logger.info("pageNum:{} pageSize:{} model:{}", pageNum,pageSize,model.toString());
 		return ${entityName?uncap_first}Service.queryPage(requestMsg);
 	}
 
 	@PostMapping("/save")
 	public ResponseMsg save(@RequestBody ${entityName} model) {
-		logger.info("params:{}", JSONUtil.toJsonStr(model));
+		logger.info("params:{}", model.toString());
 		boolean result = ${entityName?uncap_first}Service.save(model);
 		ResponseMsg responseMsg = new ResponseMsg();
 		responseMsg.setData(result);

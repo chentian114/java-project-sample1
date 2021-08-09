@@ -18,7 +18,7 @@ import com.chen.sample1.tool.message.ResponseMsg;
  *  角色表
  *
  * @author Chentian
- * @date 2021/08/05
+ * @date 2021/08/09
  */
 @Service
 public class AuthRoleServiceImpl extends ServiceImpl<AuthRoleDao, AuthRole> implements IAuthRoleService {
@@ -27,16 +27,14 @@ public class AuthRoleServiceImpl extends ServiceImpl<AuthRoleDao, AuthRole> impl
     @Autowired
 	private AuthRoleDao authRoleDao;
 
-
 	@Override
 	public ResponseMsg queryPage(RequestMsg requestMsg){
-		String orderBy = "create_time desc";
 		AuthRole authRole = requestMsg.getParams().toBean(AuthRole.class);
-		PageInfo<AuthRole> pageInfo = PageMethod.startPage(requestMsg.getPageNum(), requestMsg.getPageSize(),orderBy)
+		PageInfo<AuthRole> pageInfo = PageMethod.startPage(requestMsg.getPageNum(), requestMsg.getPageSize(),RequestMsg.DEFAULT_SORT)
     									.doSelectPageInfo(() -> authRoleDao.findAll(authRole));
 
     	PageResult<AuthRole> pageResult = new PageResult<>(pageInfo);
-    	logger.info("pageResult:{}",pageResult);
+    	logger.info("pageResult:{}", pageResult.toString());
         return ResponseMsg.createSuccessResponse(pageResult);
 	}
 

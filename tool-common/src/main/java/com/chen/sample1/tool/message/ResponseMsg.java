@@ -2,6 +2,7 @@ package com.chen.sample1.tool.message;
 
 
 import cn.hutool.json.JSONObject;
+import com.chen.sample1.tool.constant.AliErrorCodeEnum;
 
 import java.io.Serializable;
 
@@ -12,53 +13,30 @@ import java.io.Serializable;
 
 public class ResponseMsg implements Serializable {
     /** 返回结果  */
-    private int statusCode = MsgCode.Success.value();
+    private String code = AliErrorCodeEnum.SUCCESS.getCode();
     /** 返回结果描述 */
-    private String message = MsgCode.Success.desc();
+    private String description = AliErrorCodeEnum.SUCCESS.getDescription();
+    /** 错误信息 */
+    private String errorMessage;
     /** 返回结果数据，根据不同接口获得对应JSON数据结果 */
     private Object data;
 
     public ResponseMsg() {
     }
 
-    public ResponseMsg(MsgCode msgCode) {
-        this.statusCode = msgCode.value();
-        this.message = msgCode.desc();
+    public ResponseMsg(AliErrorCodeEnum codeEnum) {
+        this.code = codeEnum.getCode();
+        this.description = codeEnum.getDescription();
         this.data = new JSONObject();
     }
 
-    public ResponseMsg(int code, String message) {
-        this.statusCode = code;
-        this.message = message;
+    public ResponseMsg(AliErrorCodeEnum codeEnum, String errorMessage) {
+        this(codeEnum);
+        this.errorMessage = errorMessage;
     }
 
-    public ResponseMsg(int code, Object data, String message) {
-        this.statusCode = code;
-        this.message = message;
-        this.data = data;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
+    public ResponseMsg(AliErrorCodeEnum codeEnum, String errorMessage, Object data) {
+        this(codeEnum,errorMessage);
         this.data = data;
     }
 
@@ -67,10 +45,10 @@ public class ResponseMsg implements Serializable {
      * @date 2019/11/4
      */
     public static boolean checkSuccess(ResponseMsg responseMsg){
-        if(responseMsg==null){
+        if(responseMsg == null){
             return false;
         }
-        if(responseMsg.getStatusCode()==MsgCode.Success.value()){
+        if(AliErrorCodeEnum.SUCCESS.getCode().equals(responseMsg.getCode())){
             return true;
         }
         return false;
@@ -98,14 +76,47 @@ public class ResponseMsg implements Serializable {
      * 创建一个失败应答对象
      * @date 2019/11/5
      */
-    public static ResponseMsg createFailResponse(MsgCode msgCode){
-        return new ResponseMsg(msgCode.value(), msgCode.desc());
+    public static ResponseMsg createFailResponse(AliErrorCodeEnum codeEnum){
+        return new ResponseMsg(codeEnum);
     }
     /**
      * 创建一个失败应答对象
      * @date 2019/11/5
      */
-    public static ResponseMsg createFailResponse(MsgCode msgCode,String errMsg){
-        return new ResponseMsg(msgCode.value(), errMsg);
+    public static ResponseMsg createFailResponse(AliErrorCodeEnum codeEnum,String errorMessage){
+        return new ResponseMsg(codeEnum, errorMessage);
+    }
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 }

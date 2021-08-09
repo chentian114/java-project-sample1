@@ -7,13 +7,12 @@ import com.chen.sample1.tool.message.ResponseMsg;
 import com.chen.sample1.web.service.IAuthRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import cn.hutool.json.JSONUtil;
 
 /**
  *  角色表 Controller
  *
  * @author Chentian
- * @date 2021/08/05
+ * @date 2021/08/09
  */
 @RestController
 @RequestMapping("/authRole")
@@ -34,13 +33,13 @@ public class AuthRoleController extends BaseController {
 	@GetMapping("/queryPage")
 	public ResponseMsg queryPage(AuthRole model,Integer pageNum,Integer pageSize) {
 		RequestMsg requestMsg = new RequestMsg(model,pageNum,pageSize);
-		logger.info("params:{}", JSONUtil.toJsonStr(requestMsg));
+		logger.info("pageNum:{} pageSize:{} model:{}", pageNum,pageSize,model.toString());
 		return authRoleService.queryPage(requestMsg);
 	}
 
 	@PostMapping("/save")
 	public ResponseMsg save(@RequestBody AuthRole model) {
-		logger.info("params:{}", JSONUtil.toJsonStr(model));
+		logger.info("params:{}", model.toString());
 		boolean result = authRoleService.save(model);
 		ResponseMsg responseMsg = new ResponseMsg();
 		responseMsg.setData(result);

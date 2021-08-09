@@ -10,7 +10,6 @@ import java.util.List;
  * @date 2019/11/4
  */
 public class PageResult<T> {
-
     /** 当前页码 */
     private int pageNum;
     /** 每页数据数 */
@@ -81,5 +80,16 @@ public class PageResult<T> {
 
     public void setContentList(List<T> contentList) {
         this.contentList = contentList;
+    }
+
+    @Override
+    public String toString() {
+        return "PageResult{" +
+                "pageNum=" + pageNum +
+                ", pageSize=" + pageSize +
+                ", totalElements=" + totalElements +
+                ", totalPages=" + totalPages +
+                ", contentList=" + contentList +
+                '}';
     }
 }

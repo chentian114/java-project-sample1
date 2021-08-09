@@ -30,6 +30,13 @@
         </dependency>
         <!-- mybatis分页工具，去除部分依赖防止造成冲突 -->
 
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- lombok -->
+
         <!-- Hutool是一个Java工具包类库，组成各种Util工具类 -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -43,5 +50,6 @@
             <artifactId>bcprov-jdk15to18</artifactId>
         </dependency>
         <!-- 国密加密 -->
+
     </dependencies>
 </project>

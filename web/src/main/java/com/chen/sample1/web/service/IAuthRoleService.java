@@ -9,7 +9,7 @@ import com.chen.sample1.tool.message.ResponseMsg;
  *  角色表 接口
  *
  * @author Chentian
- * @date 2021/08/05
+ * @date 2021/08/09
  */
 public interface IAuthRoleService extends IService<AuthRole>{
 

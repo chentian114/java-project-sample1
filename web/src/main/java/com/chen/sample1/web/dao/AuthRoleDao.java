@@ -10,7 +10,7 @@ import java.util.List;
  *  角色表 Dao
  *
  * @author Chentian
- * @date 2021/08/05
+ * @date 2021/08/09
  */
 @Repository
 public interface AuthRoleDao extends BaseMapper<AuthRole> {

@@ -11,12 +11,13 @@ import java.util.Date;
  *  角色表
  *
  * @author Chentian
- * @date 2021/08/05
+ * @date 2021/08/09
  */
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
 @Builder
+@ToString
 @TableName(value = "t_auth_role")
 public class AuthRole implements Serializable{
     /**

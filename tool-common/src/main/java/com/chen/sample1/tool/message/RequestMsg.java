@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class RequestMsg implements Serializable {
     public static final int DEFAULT_PAGE = 1;
     public static final int DEFAULT_SIZE = 10;
+    public static final String DEFAULT_SORT = "create_time desc";
 
     /**
      *  查询页数，从1开始

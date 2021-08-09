@@ -1,4 +1,4 @@
-package com.chen.sample1.tool.utils;
+package com.chen.sample1.tool.util;
 
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.asymmetric.KeyType;

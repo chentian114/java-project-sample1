@@ -27,16 +27,14 @@ public class ${entityName}ServiceImpl extends ServiceImpl<${entityName}Dao, ${en
     @Autowired
 	private ${entityName}Dao ${entityName?uncap_first}Dao;
 
-
 	@Override
 	public ResponseMsg queryPage(RequestMsg requestMsg){
-		String orderBy = "create_time desc";
 		${entityName} ${entityName?uncap_first} = requestMsg.getParams().toBean(${entityName}.class);
-		PageInfo<${entityName}> pageInfo = PageMethod.startPage(requestMsg.getPageNum(), requestMsg.getPageSize(),orderBy)
+		PageInfo<${entityName}> pageInfo = PageMethod.startPage(requestMsg.getPageNum(), requestMsg.getPageSize(),RequestMsg.DEFAULT_SORT)
     									.doSelectPageInfo(() -> ${entityName?uncap_first}Dao.findAll(${entityName?uncap_first}));
 
     	PageResult<${entityName}> pageResult = new PageResult<>(pageInfo);
-    	logger.info("pageResult:{}",pageResult);
+    	logger.info("pageResult:{}", pageResult.toString());
         return ResponseMsg.createSuccessResponse(pageResult);
 	}
 

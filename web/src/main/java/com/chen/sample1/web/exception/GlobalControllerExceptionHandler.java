@@ -1,6 +1,6 @@
 package com.chen.sample1.web.exception;
 
-import com.chen.sample1.tool.message.MsgCode;
+import com.chen.sample1.tool.constant.AliErrorCodeEnum;
 import com.chen.sample1.tool.message.ResponseMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +27,6 @@ public class GlobalControllerExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseMsg errorHandler(Exception e) {
         logger.error("system error:", e);
-        return new ResponseMsg(MsgCode.Error);
+        return new ResponseMsg(AliErrorCodeEnum.SYSTEM_ERROR_B0001, e.getMessage());
     }
 }

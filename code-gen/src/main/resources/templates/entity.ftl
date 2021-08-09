@@ -22,6 +22,7 @@ import java.sql.*;
 @Data
 @AllArgsConstructor
 @Builder
+@ToString
 @TableName(value = "${tableName}")
 public class ${entityName} implements Serializable{
 <#if fieldInfoList?exists && fieldInfoList?size gt 0>
